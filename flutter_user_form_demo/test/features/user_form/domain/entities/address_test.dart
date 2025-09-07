@@ -8,6 +8,7 @@ void main() {
 
     final tAddress = Address(
       id: '1',
+      userId: 'test-user-1',
       streetAddress: 'Calle 123 #45-67',
       city: 'Medellín',
       postalCode: '050001',
@@ -26,6 +27,7 @@ void main() {
       // arrange
       final address1 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -37,6 +39,7 @@ void main() {
 
       final address2 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -54,6 +57,7 @@ void main() {
       // arrange
       final address1 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -65,6 +69,7 @@ void main() {
 
       final address2 = Address(
         id: '2',
+        userId: 'test-user-2',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -82,6 +87,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -103,6 +109,7 @@ void main() {
       // arrange
       final originalAddress = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -131,6 +138,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123 #45-67',
         city: 'Medellín',
         postalCode: '050001',
@@ -151,6 +159,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         streetAddress2: 'Apartamento 45',
         city: 'Medellín',
@@ -173,6 +182,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -196,6 +206,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -213,6 +224,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: '',
         city: 'Medellín',
         postalCode: '050001',
@@ -230,6 +242,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: '',
         postalCode: '050001',
@@ -247,6 +260,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '',
@@ -264,6 +278,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -281,6 +296,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -307,6 +323,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         streetAddress2: null,
         city: 'Medellín',
@@ -329,6 +346,7 @@ void main() {
       // arrange
       final address = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         streetAddress2: '',
         city: 'Medellín',

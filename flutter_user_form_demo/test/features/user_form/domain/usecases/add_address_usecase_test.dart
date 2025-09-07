@@ -29,6 +29,7 @@ void main() {
 
     final tAddress = Address(
       id: 'addr_1',
+      userId: 'test-user-1',
       streetAddress: 'Calle 123 #45-67',
       city: 'Medellín',
       postalCode: '050001',
@@ -101,6 +102,7 @@ void main() {
     test('should return ValidationFailure when address is invalid', () async {
       final invalidAddress = Address(
         id: 'addr_1',
+        userId: 'test-user-1',
         streetAddress: '',
         city: 'Medellín',
         postalCode: '050001',
@@ -214,6 +216,7 @@ void main() {
     test('should handle address with all optional fields', () async {
       final completeAddress = Address(
         id: 'addr_2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         streetAddress2: 'Apartamento 123',
         city: 'Bogotá',
@@ -260,6 +263,7 @@ void main() {
 
     final tAddress = Address(
       id: 'addr_1',
+      userId: 'test-user-1',
       streetAddress: 'Calle 123',
       city: 'Medellín',
       postalCode: '050001',
@@ -293,6 +297,7 @@ void main() {
     test('should not be equal when address differs', () {
       final address2 = Address(
         id: 'addr_2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',

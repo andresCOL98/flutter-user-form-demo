@@ -29,6 +29,7 @@ void main() {
 
     final tAddress = Address(
       id: 'addr_1',
+      userId: 'test-user-1',
       streetAddress: 'Calle 123 #45-67',
       city: 'Medellín',
       postalCode: '050001',
@@ -120,16 +121,13 @@ void main() {
 
     group('updateUser', () {
       test('should define updateUser method signature', () {
-        // arrange & act
         when(mockUserRepository.updateUser(tUser))
             .thenAnswer((_) async => Right(tUser));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.updateUser, isA<Function>());
       });
 
       test('should return updated User on success', () async {
-        // arrange
         final updatedUser = User(
           id: '1',
           firstName: 'Juan Carlos',
@@ -142,10 +140,8 @@ void main() {
         when(mockUserRepository.updateUser(updatedUser))
             .thenAnswer((_) async => Right(updatedUser));
 
-        // act
         final result = await mockUserRepository.updateUser(updatedUser);
 
-        // assert
         expect(result, isA<Right<Failure, User>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -155,7 +151,6 @@ void main() {
       });
 
       test('should return Failure when update fails', () async {
-        // arrange
         const tFailure = ServerFailure(
           message: 'Failed to update user',
           code: 'UPDATE_ERROR',
@@ -164,10 +159,8 @@ void main() {
         when(mockUserRepository.updateUser(tUser))
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result = await mockUserRepository.updateUser(tUser);
 
-        // assert
         expect(result, isA<Left<Failure, User>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.updateUser(tUser));
@@ -176,33 +169,27 @@ void main() {
 
     group('deleteUser', () {
       test('should define deleteUser method signature', () {
-        // arrange & act
         when(mockUserRepository.deleteUser('1'))
             .thenAnswer((_) async => const Right(null));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.deleteUser, isA<Function>());
       });
 
       test('should return void on successful deletion', () async {
-        // arrange
         when(mockUserRepository.deleteUser('1'))
             .thenAnswer((_) async => const Right(null));
 
-        // act
         final result = await mockUserRepository.deleteUser('1');
 
-        // assert
         expect(result, isA<Right<Failure, void>>());
         result.fold(
           (failure) => fail('Should return success'),
-          (success) => {}, // void type, no assertion needed
+          (success) => {},
         );
         verify(mockUserRepository.deleteUser('1'));
       });
 
       test('should return Failure when deletion fails', () async {
-        // arrange
         const tFailure = NotFoundFailure(
           message: 'User not found',
           code: 'USER_NOT_FOUND',
@@ -211,10 +198,8 @@ void main() {
         when(mockUserRepository.deleteUser('999'))
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result = await mockUserRepository.deleteUser('999');
 
-        // assert
         expect(result, isA<Left<Failure, void>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.deleteUser('999'));
@@ -223,23 +208,18 @@ void main() {
 
     group('getAllUsers', () {
       test('should define getAllUsers method signature', () {
-        // arrange & act
         when(mockUserRepository.getAllUsers())
             .thenAnswer((_) async => Right(tUsers));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.getAllUsers, isA<Function>());
       });
 
       test('should return list of Users on success', () async {
-        // arrange
         when(mockUserRepository.getAllUsers())
             .thenAnswer((_) async => Right(tUsers));
 
-        // act
         final result = await mockUserRepository.getAllUsers();
 
-        // assert
         expect(result, isA<Right<Failure, List<User>>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -249,14 +229,11 @@ void main() {
       });
 
       test('should return empty list when no users exist', () async {
-        // arrange
         when(mockUserRepository.getAllUsers())
             .thenAnswer((_) async => const Right([]));
 
-        // act
         final result = await mockUserRepository.getAllUsers();
 
-        // assert
         expect(result, isA<Right<Failure, List<User>>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -266,7 +243,6 @@ void main() {
       });
 
       test('should return Failure on error', () async {
-        // arrange
         const tFailure = ServerFailure(
           message: 'Failed to load users',
           code: 'LOAD_ERROR',
@@ -275,10 +251,8 @@ void main() {
         when(mockUserRepository.getAllUsers())
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result = await mockUserRepository.getAllUsers();
 
-        // assert
         expect(result, isA<Left<Failure, List<User>>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.getAllUsers());
@@ -287,27 +261,22 @@ void main() {
 
     group('addAddressToUser', () {
       test('should define addAddressToUser method signature', () {
-        // arrange
         final userWithAddress = tUser.addAddress(tAddress);
 
         when(mockUserRepository.addAddressToUser('1', tAddress))
             .thenAnswer((_) async => Right(userWithAddress));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.addAddressToUser, isA<Function>());
       });
 
       test('should return User with added address on success', () async {
-        // arrange
         final userWithAddress = tUser.addAddress(tAddress);
 
         when(mockUserRepository.addAddressToUser('1', tAddress))
             .thenAnswer((_) async => Right(userWithAddress));
 
-        // act
         final result = await mockUserRepository.addAddressToUser('1', tAddress);
 
-        // assert
         expect(result, isA<Right<Failure, User>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -320,7 +289,6 @@ void main() {
       });
 
       test('should return Failure when user not found', () async {
-        // arrange
         const tFailure = NotFoundFailure(
           message: 'User not found',
           code: 'USER_NOT_FOUND',
@@ -329,11 +297,9 @@ void main() {
         when(mockUserRepository.addAddressToUser('999', tAddress))
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result =
             await mockUserRepository.addAddressToUser('999', tAddress);
 
-        // assert
         expect(result, isA<Left<Failure, User>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.addAddressToUser('999', tAddress));
@@ -342,24 +308,19 @@ void main() {
 
     group('removeUserAddress', () {
       test('should define removeUserAddress method signature', () {
-        // arrange & act
         when(mockUserRepository.removeUserAddress('1', 'addr_1'))
             .thenAnswer((_) async => Right(tUser));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.removeUserAddress, isA<Function>());
       });
 
       test('should return User without address on success', () async {
-        // arrange
         when(mockUserRepository.removeUserAddress('1', 'addr_1'))
             .thenAnswer((_) async => Right(tUser));
 
-        // act
         final result =
             await mockUserRepository.removeUserAddress('1', 'addr_1');
 
-        // assert
         expect(result, isA<Right<Failure, User>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -369,7 +330,6 @@ void main() {
       });
 
       test('should return Failure when address removal fails', () async {
-        // arrange
         const tFailure = NotFoundFailure(
           message: 'Address not found',
           code: 'ADDRESS_NOT_FOUND',
@@ -378,11 +338,9 @@ void main() {
         when(mockUserRepository.removeUserAddress('1', 'invalid_addr'))
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result =
             await mockUserRepository.removeUserAddress('1', 'invalid_addr');
 
-        // assert
         expect(result, isA<Left<Failure, User>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.removeUserAddress('1', 'invalid_addr'));
@@ -391,23 +349,18 @@ void main() {
 
     group('searchUsersByName', () {
       test('should define searchUsersByName method signature', () {
-        // arrange & act
         when(mockUserRepository.searchUsersByName('Juan'))
             .thenAnswer((_) async => Right(tUsers));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.searchUsersByName, isA<Function>());
       });
 
       test('should return matching users on success', () async {
-        // arrange
         when(mockUserRepository.searchUsersByName('Juan'))
             .thenAnswer((_) async => Right(tUsers));
 
-        // act
         final result = await mockUserRepository.searchUsersByName('Juan');
 
-        // assert
         expect(result, isA<Right<Failure, List<User>>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -417,15 +370,12 @@ void main() {
       });
 
       test('should return empty list when no users match', () async {
-        // arrange
         when(mockUserRepository.searchUsersByName('NonExistent'))
             .thenAnswer((_) async => const Right([]));
 
-        // act
         final result =
             await mockUserRepository.searchUsersByName('NonExistent');
 
-        // assert
         expect(result, isA<Right<Failure, List<User>>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -437,28 +387,23 @@ void main() {
 
     group('updateUserAddress', () {
       test('should define updateUserAddress method signature', () {
-        // arrange
         final userWithUpdatedAddress = tUser.addAddress(tAddress);
 
         when(mockUserRepository.updateUserAddress('1', tAddress))
             .thenAnswer((_) async => Right(userWithUpdatedAddress));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.updateUserAddress, isA<Function>());
       });
 
       test('should return User with updated address on success', () async {
-        // arrange
         final userWithUpdatedAddress = tUser.addAddress(tAddress);
 
         when(mockUserRepository.updateUserAddress('1', tAddress))
             .thenAnswer((_) async => Right(userWithUpdatedAddress));
 
-        // act
         final result =
             await mockUserRepository.updateUserAddress('1', tAddress);
 
-        // assert
         expect(result, isA<Right<Failure, User>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -473,24 +418,19 @@ void main() {
 
     group('setPrimaryAddress', () {
       test('should define setPrimaryAddress method signature', () {
-        // arrange & act
         when(mockUserRepository.setPrimaryAddress('1', 'addr_1'))
             .thenAnswer((_) async => Right(tUser));
 
-        // assert - method signature exists and can be mocked
         expect(mockUserRepository.setPrimaryAddress, isA<Function>());
       });
 
       test('should return User with primary address set on success', () async {
-        // arrange
         when(mockUserRepository.setPrimaryAddress('1', 'addr_1'))
             .thenAnswer((_) async => Right(tUser));
 
-        // act
         final result =
             await mockUserRepository.setPrimaryAddress('1', 'addr_1');
 
-        // assert
         expect(result, isA<Right<Failure, User>>());
         result.fold(
           (failure) => fail('Should return success'),
@@ -500,7 +440,6 @@ void main() {
       });
 
       test('should return Failure when address not found', () async {
-        // arrange
         const tFailure = NotFoundFailure(
           message: 'Address not found',
           code: 'ADDRESS_NOT_FOUND',
@@ -509,11 +448,9 @@ void main() {
         when(mockUserRepository.setPrimaryAddress('1', 'invalid_addr'))
             .thenAnswer((_) async => const Left(tFailure));
 
-        // act
         final result =
             await mockUserRepository.setPrimaryAddress('1', 'invalid_addr');
 
-        // assert
         expect(result, isA<Left<Failure, User>>());
         expect(result, equals(const Left(tFailure)));
         verify(mockUserRepository.setPrimaryAddress('1', 'invalid_addr'));
@@ -522,7 +459,6 @@ void main() {
 
     group('UserRepository contract validation', () {
       test('should implement all required methods', () {
-        // This test ensures all methods are properly defined in the interface
         expect(mockUserRepository, isA<UserRepository>());
 
         // Verify method signatures exist
@@ -537,7 +473,6 @@ void main() {
         expect(mockUserRepository.removeUserAddress, isA<Function>());
         expect(mockUserRepository.setPrimaryAddress, isA<Function>());
 
-        // If we get here without compilation errors, all methods are properly defined
         expect(true, isTrue);
       });
     });

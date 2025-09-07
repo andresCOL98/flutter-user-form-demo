@@ -66,6 +66,14 @@ class User extends Equatable {
   /// Returns the user's full name.
   String get fullName => '$firstName $lastName';
 
+  /// Returns the user's initials.
+  String get initials {
+    String firstInitial =
+        firstName.isNotEmpty ? firstName[0].toUpperCase() : '';
+    String lastInitial = lastName.isNotEmpty ? lastName[0].toUpperCase() : '';
+    return '$firstInitial$lastInitial';
+  }
+
   /// Returns the user's primary address if available.
   Address? get primaryAddress {
     try {

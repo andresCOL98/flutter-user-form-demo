@@ -9,6 +9,7 @@ void main() {
 
     final tAddress = Address(
       id: '1',
+      userId: 'test-user-1',
       streetAddress: 'Calle 123',
       city: 'Medellín',
       postalCode: '050001',
@@ -118,6 +119,7 @@ void main() {
       // arrange
       final primaryAddress = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -130,6 +132,7 @@ void main() {
 
       final secondaryAddress = Address(
         id: '2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',
@@ -160,6 +163,7 @@ void main() {
       // arrange
       final address1 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -172,6 +176,7 @@ void main() {
 
       final address2 = Address(
         id: '2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',
@@ -339,6 +344,7 @@ void main() {
       // arrange
       final activeAddress1 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -351,6 +357,7 @@ void main() {
 
       final activeAddress2 = Address(
         id: '2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',
@@ -363,6 +370,7 @@ void main() {
 
       final inactiveAddress = Address(
         id: '3',
+        userId: 'test-user-1',
         streetAddress: 'Avenida 789',
         city: 'Cali',
         postalCode: '760001',
@@ -462,6 +470,7 @@ void main() {
 
       final newAddress = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -484,6 +493,7 @@ void main() {
       // arrange
       final address1 = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -495,6 +505,7 @@ void main() {
 
       final address2 = Address(
         id: '2',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',
@@ -526,6 +537,7 @@ void main() {
       // arrange
       final originalAddress = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -561,6 +573,7 @@ void main() {
       // arrange
       final originalAddress = Address(
         id: '1',
+        userId: 'test-user-1',
         streetAddress: 'Calle 123',
         city: 'Medellín',
         postalCode: '050001',
@@ -581,6 +594,7 @@ void main() {
 
       final nonExistentAddress = Address(
         id: '999',
+        userId: 'test-user-1',
         streetAddress: 'Carrera 456',
         city: 'Bogotá',
         postalCode: '110111',
