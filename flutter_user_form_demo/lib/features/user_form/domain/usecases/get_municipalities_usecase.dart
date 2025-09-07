@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../entities/municipality.dart';
 import '../repositories/location_repository.dart';
 
+@injectable
 class GetMunicipalitiesUseCase
     implements UseCase<List<Municipality>, GetMunicipalitiesParams> {
   final LocationRepository repository;
@@ -40,6 +42,7 @@ class GetMunicipalitiesUseCase
   }
 }
 
+@injectable
 class SearchMunicipalitiesUseCase
     implements UseCase<List<Municipality>, SearchMunicipalitiesParams> {
   final LocationRepository repository;

@@ -8,46 +8,37 @@ part of 'address_model.dart';
 
 AddressModel _$AddressModelFromJson(Map<String, dynamic> json) => AddressModel(
       id: json['id'] as String,
-      userId: json['user_id'] as String,
-      streetAddress: json['street_address'] as String,
-      streetAddress2: json['street_address_2'] as String?,
+      userId: json['userId'] as String,
+      streetAddress: json['streetAddress'] as String,
+      streetAddress2: json['streetAddress2'] as String?,
       city: json['city'] as String,
-      postalCode: json['postal_code'] as String,
-      countryId: json['country_id'] as String,
-      departmentId: json['department_id'] as String,
-      municipalityId: json['municipality_id'] as String,
+      postalCode: json['postalCode'] as String,
+      countryId: json['countryId'] as String,
+      departmentId: json['departmentId'] as String,
+      municipalityId: json['municipalityId'] as String,
       notes: json['notes'] as String?,
-      isPrimary: json['is_primary'] as bool? ?? false,
-      isActive: json['is_active'] as bool? ?? true,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: json['updated_at'] == null
+      isPrimary: json['isPrimary'] as bool? ?? false,
+      isActive: json['isActive'] as bool? ?? true,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
           ? null
-          : DateTime.parse(json['updated_at'] as String),
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$AddressModelToJson(AddressModel instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-    'user_id': instance.userId,
-    'street_address': instance.streetAddress,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('street_address_2', instance.streetAddress2);
-  val['city'] = instance.city;
-  val['postal_code'] = instance.postalCode;
-  val['country_id'] = instance.countryId;
-  val['department_id'] = instance.departmentId;
-  val['municipality_id'] = instance.municipalityId;
-  writeNotNull('notes', instance.notes);
-  val['is_primary'] = instance.isPrimary;
-  val['is_active'] = instance.isActive;
-  val['created_at'] = instance.createdAt.toIso8601String();
-  writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
-  return val;
-}
+Map<String, dynamic> _$AddressModelToJson(AddressModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'streetAddress': instance.streetAddress,
+      'streetAddress2': instance.streetAddress2,
+      'city': instance.city,
+      'postalCode': instance.postalCode,
+      'countryId': instance.countryId,
+      'departmentId': instance.departmentId,
+      'municipalityId': instance.municipalityId,
+      'notes': instance.notes,
+      'isPrimary': instance.isPrimary,
+      'isActive': instance.isActive,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

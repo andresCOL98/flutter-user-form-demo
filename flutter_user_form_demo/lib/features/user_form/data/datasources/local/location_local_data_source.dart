@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:get_it/get_it.dart';
 
@@ -24,6 +25,7 @@ abstract class LocationLocalDataSource {
   Future<void> cacheMunicipalities(List<MunicipalityModel> municipalities);
 }
 
+@Injectable(as: LocationLocalDataSource)
 class LocationLocalDataSourceImpl implements LocationLocalDataSource {
   Future<Database> get database => GetIt.instance.getAsync<Database>();
 

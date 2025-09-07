@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../entities/country.dart';
 import '../repositories/location_repository.dart';
 
+@injectable
 class GetCountriesUseCase implements NoParamsUseCase<List<Country>> {
   final LocationRepository repository;
 
@@ -28,6 +30,7 @@ class GetCountriesUseCase implements NoParamsUseCase<List<Country>> {
   }
 }
 
+@injectable
 class SearchCountriesUseCase
     implements UseCase<List<Country>, SearchCountriesParams> {
   final LocationRepository repository;

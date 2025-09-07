@@ -9,20 +9,14 @@ class MunicipalityModel extends Municipality {
   final DateTime updatedAt;
 
   const MunicipalityModel({
-    required String id,
-    required String name,
-    required String code,
-    required String departmentId,
-    bool isActive = true,
+    required super.id,
+    required super.name,
+    required super.code,
+    required super.departmentId,
+    super.isActive,
     required this.createdAt,
     required this.updatedAt,
-  }) : super(
-          id: id,
-          name: name,
-          code: code,
-          departmentId: departmentId,
-          isActive: isActive,
-        );
+  });
 
   factory MunicipalityModel.fromJson(Map<String, dynamic> json) =>
       _$MunicipalityModelFromJson(json);
@@ -76,6 +70,7 @@ class MunicipalityModel extends Municipality {
     );
   }
 
+  @override
   MunicipalityModel copyWith({
     String? id,
     String? name,

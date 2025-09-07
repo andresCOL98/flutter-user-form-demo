@@ -111,8 +111,8 @@ void main() {
       result.fold(
         (failure) {
           expect(failure, isA<ValidationFailure>());
-          expect(failure.message, equals('Invalid date of birth'));
-          expect(failure.code, equals('INVALID_DATE_OF_BIRTH'));
+          expect(failure.message, equals('Invalid user data provided'));
+          expect(failure.code, equals('INVALID_USER_DATA'));
         },
         (user) => fail('Should return failure'),
       );

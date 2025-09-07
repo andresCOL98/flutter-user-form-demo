@@ -48,7 +48,14 @@ void main() {
 
       final result = await useCase(params);
 
-      expect(result, equals(Right(tMunicipalities)));
+      expect(result, isA<Right>());
+      result.fold(
+        (failure) => fail('Should return municipalities'),
+        (municipalities) {
+          expect(municipalities, hasLength(2));
+          expect(municipalities, containsAll(tMunicipalities));
+        },
+      );
       verify(
           mockLocationRepository.getMunicipalitiesByDepartment(tDepartmentId));
       verifyNoMoreInteractions(mockLocationRepository);
@@ -99,7 +106,11 @@ void main() {
 
       final result = await useCase(params);
 
-      expect(result, equals(const Right([])));
+      expect(result, isA<Right>());
+      result.fold(
+        (failure) => fail('Should return empty list'),
+        (municipalities) => expect(municipalities, isEmpty),
+      );
       verify(
           mockLocationRepository.getMunicipalitiesByDepartment(tDepartmentId));
       verifyNoMoreInteractions(mockLocationRepository);

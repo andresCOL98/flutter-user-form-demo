@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/location_bloc.dart';
+import '../bloc/location_bloc/location_bloc.dart';
 import '../../domain/entities/address.dart';
 import '../../domain/usecases/add_address_usecase.dart';
 import '../../../di/injection_container.dart';

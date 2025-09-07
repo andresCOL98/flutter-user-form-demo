@@ -1,83 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/get_users_usecase.dart';
-import '../../domain/usecases/get_user_usecase.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../domain/entities/user.dart';
+import '../../../domain/usecases/get_users_usecase.dart';
+import '../../../domain/usecases/get_user_usecase.dart';
+import '../../../../../core/usecases/usecase.dart';
 
-// Events
-abstract class UserListEvent extends Equatable {
-  const UserListEvent();
+part 'user_list_event.dart';
+part 'user_list_state.dart';
 
-  @override
-  List<Object?> get props => [];
-}
-
-class LoadUsersEvent extends UserListEvent {}
-
-class RefreshUsersEvent extends UserListEvent {}
-
-class SearchUsersEvent extends UserListEvent {
-  final String query;
-
-  const SearchUsersEvent({required this.query});
-
-  @override
-  List<Object?> get props => [query];
-}
-
-class LoadUserDetailsEvent extends UserListEvent {
-  final String userId;
-
-  const LoadUserDetailsEvent({required this.userId});
-
-  @override
-  List<Object?> get props => [userId];
-}
-
-// States
-abstract class UserListState extends Equatable {
-  const UserListState();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class UserListInitial extends UserListState {}
-
-class UserListLoading extends UserListState {}
-
-class UserListLoaded extends UserListState {
-  final List<User> users;
-
-  const UserListLoaded({required this.users});
-
-  @override
-  List<Object?> get props => [users];
-}
-
-class UserListEmpty extends UserListState {}
-
-class UserListError extends UserListState {
-  final String message;
-
-  const UserListError({required this.message});
-
-  @override
-  List<Object?> get props => [message];
-}
-
-class UserDetailsLoaded extends UserListState {
-  final User user;
-
-  const UserDetailsLoaded({required this.user});
-
-  @override
-  List<Object?> get props => [user];
-}
-
-// BLoC
+@injectable
 class UserListBloc extends Bloc<UserListEvent, UserListState> {
   final GetUsersUseCase getUsersUseCase;
   final GetUserUseCase getUserUseCase;

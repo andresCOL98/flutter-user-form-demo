@@ -40,7 +40,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   dartz: ^0.10.1
   formz: ^0.8.0
-  json_annotation: ^4.4.0
+  json_annotation: ^4.9.0
   google_fonts: ^6.2.1
   auto_route: ^10.0.1
   shared_preferences: ^2.2.3

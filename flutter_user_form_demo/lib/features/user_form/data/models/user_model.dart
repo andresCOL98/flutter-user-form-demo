@@ -15,27 +15,19 @@ class UserModel extends User {
   final bool isActive;
 
   const UserModel({
-    required String id,
-    required String firstName,
-    required String lastName,
-    required DateTime dateOfBirth,
-    String? email,
-    String? phoneNumber,
+    required super.id,
+    required super.firstName,
+    required super.lastName,
+    required super.dateOfBirth,
+    super.email,
+    super.phoneNumber,
     this.addresses = const [],
     this.isActive = true,
-    required DateTime createdAt,
-    DateTime? updatedAt,
+    required super.createdAt,
+    super.updatedAt,
   }) : super(
-          id: id,
-          firstName: firstName,
-          lastName: lastName,
-          dateOfBirth: dateOfBirth,
-          email: email,
-          phoneNumber: phoneNumber,
           addresses: addresses,
           isActive: isActive,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
         );
 
   static bool _boolFromJson(dynamic value) {
@@ -113,6 +105,7 @@ class UserModel extends User {
     );
   }
 
+  @override
   UserModel copyWith({
     String? id,
     String? firstName,

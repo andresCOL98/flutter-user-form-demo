@@ -49,6 +49,11 @@ void main() {
     });
 
     test('should return ValidationFailure when user id is empty', () async {
+      const tValidationFailure = ValidationFailure(
+        message: 'User ID cannot be empty',
+        code: 'EMPTY_USER_ID',
+      );
+
       final tInvalidUser = User(
         id: '',
         firstName: 'Juan',
@@ -61,6 +66,9 @@ void main() {
         createdAt: DateTime(2024, 1, 1),
       );
 
+      when(mockUserRepository.updateUser(tInvalidUser))
+          .thenAnswer((_) async => const Left(tValidationFailure));
+
       final params = UpdateUserParams(user: tInvalidUser);
 
       final result = await useCase(params);
@@ -69,12 +77,13 @@ void main() {
       result.fold(
         (failure) {
           expect(failure, isA<ValidationFailure>());
-          expect(failure.message, contains('User ID'));
-          expect(failure.code, contains('EMPTY'));
+          expect(failure.message, equals('User ID cannot be empty'));
+          expect(failure.code, equals('EMPTY_USER_ID'));
         },
         (user) => fail('Should return failure'),
       );
-      verifyZeroInteractions(mockUserRepository);
+      verify(mockUserRepository.updateUser(tInvalidUser));
+      verifyNoMoreInteractions(mockUserRepository);
     });
 
     test('should return NotFoundFailure when user does not exist', () async {

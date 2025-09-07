@@ -12,8 +12,7 @@ import '../models/country_model.dart';
 import '../models/department_model.dart';
 import '../models/municipality_model.dart';
 
-/// Implementation of LocationRepository using local and remote data sources
-@LazySingleton(as: LocationRepository)
+@Injectable(as: LocationRepository)
 class LocationRepositoryImpl implements LocationRepository {
   final LocationLocalDataSource localDataSource;
   final LocationRemoteDataSource remoteDataSource;
@@ -26,7 +25,6 @@ class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<Either<Failure, List<Country>>> getCountries() async {
     try {
-      // First try to get from local cache
       final localCountries = await localDataSource.getCountries();
       if (localCountries.isNotEmpty) {
         final countries = localCountries
@@ -36,10 +34,8 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(countries);
       }
 
-      // If not in cache, fetch from remote
       final remoteCountries = await remoteDataSource.getCountries();
 
-      // Cache the results locally
       await localDataSource.cacheCountries(remoteCountries);
 
       final countries = remoteCountries
@@ -83,7 +79,6 @@ class LocationRepositoryImpl implements LocationRepository {
   Future<Either<Failure, List<Department>>> getDepartmentsByCountry(
       String countryId) async {
     try {
-      // First try to get from local cache
       final localDepartments =
           await localDataSource.getDepartmentsByCountry(countryId);
       if (localDepartments.isNotEmpty) {
@@ -94,11 +89,9 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(departments);
       }
 
-      // If not in cache, fetch from remote
       final remoteDepartments =
           await remoteDataSource.getDepartmentsByCountry(countryId);
 
-      // Cache the results locally
       await localDataSource.cacheDepartments(remoteDepartments);
 
       final departments = remoteDepartments
@@ -144,7 +137,6 @@ class LocationRepositoryImpl implements LocationRepository {
   Future<Either<Failure, List<Municipality>>> getMunicipalitiesByDepartment(
       String departmentId) async {
     try {
-      // First try to get from local cache
       final localMunicipalities =
           await localDataSource.getMunicipalitiesByDepartment(departmentId);
       if (localMunicipalities.isNotEmpty) {
@@ -155,11 +147,9 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(municipalities);
       }
 
-      // If not in cache, fetch from remote
       final remoteMunicipalities =
           await remoteDataSource.getMunicipalitiesByDepartment(departmentId);
 
-      // Cache the results locally
       await localDataSource.cacheMunicipalities(remoteMunicipalities);
 
       final municipalities = remoteMunicipalities
@@ -232,13 +222,11 @@ class LocationRepositoryImpl implements LocationRepository {
     String municipalityId,
   ) async {
     try {
-      // Check if department belongs to country
       final department = await localDataSource.getDepartmentById(departmentId);
       if (department.countryId != countryId) {
         return Right(false);
       }
 
-      // Check if municipality belongs to department
       final municipality =
           await localDataSource.getMunicipalityById(municipalityId);
       if (municipality.departmentId != departmentId) {

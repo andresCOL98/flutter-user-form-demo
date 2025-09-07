@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/location_bloc.dart';
+import '../bloc/location_bloc/location_bloc.dart';
 import '../../domain/entities/country.dart';
 import '../../domain/entities/department.dart';
 import '../../domain/entities/municipality.dart';

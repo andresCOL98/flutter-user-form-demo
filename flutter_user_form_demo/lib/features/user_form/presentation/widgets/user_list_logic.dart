@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/user_list_bloc.dart';
+import '../bloc/user_list_bloc/user_list_bloc.dart';
 import '../../domain/entities/user.dart';
 import '../navigation/app_router.dart';
 import '../pages/user_detail_page.dart';

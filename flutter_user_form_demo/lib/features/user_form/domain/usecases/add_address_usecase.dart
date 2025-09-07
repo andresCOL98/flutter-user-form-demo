@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
@@ -7,6 +8,7 @@ import '../entities/address.dart';
 import '../repositories/user_repository.dart';
 import '../repositories/location_repository.dart';
 
+@injectable
 class AddAddressUseCase implements UseCase<User, AddAddressParams> {
   final UserRepository userRepository;
   final LocationRepository locationRepository;

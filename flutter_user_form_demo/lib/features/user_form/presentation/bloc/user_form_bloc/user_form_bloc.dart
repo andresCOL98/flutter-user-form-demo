@@ -1,80 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/create_user_usecase.dart';
-import '../../domain/usecases/update_user_usecase.dart';
+import '../../../domain/entities/user.dart';
+import '../../../domain/usecases/create_user_usecase.dart';
+import '../../../domain/usecases/update_user_usecase.dart';
 
-// Events
-abstract class UserFormEvent extends Equatable {
-  const UserFormEvent();
+part 'user_form_event.dart';
+part 'user_form_state.dart';
 
-  @override
-  List<Object?> get props => [];
-}
-
-class CreateUserEvent extends UserFormEvent {
-  final String firstName;
-  final String lastName;
-  final DateTime dateOfBirth;
-  final String? email;
-  final String? phoneNumber;
-
-  const CreateUserEvent({
-    required this.firstName,
-    required this.lastName,
-    required this.dateOfBirth,
-    this.email,
-    this.phoneNumber,
-  });
-
-  @override
-  List<Object?> get props =>
-      [firstName, lastName, dateOfBirth, email, phoneNumber];
-}
-
-class UpdateUserEvent extends UserFormEvent {
-  final User user;
-
-  const UpdateUserEvent({required this.user});
-
-  @override
-  List<Object?> get props => [user];
-}
-
-class ResetFormEvent extends UserFormEvent {}
-
-// States
-abstract class UserFormState extends Equatable {
-  const UserFormState();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class UserFormInitial extends UserFormState {}
-
-class UserFormLoading extends UserFormState {}
-
-class UserFormSuccess extends UserFormState {
-  final User user;
-
-  const UserFormSuccess({required this.user});
-
-  @override
-  List<Object?> get props => [user];
-}
-
-class UserFormError extends UserFormState {
-  final String message;
-
-  const UserFormError({required this.message});
-
-  @override
-  List<Object?> get props => [message];
-}
-
-// BLoC
+@injectable
 class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
   final CreateUserUseCase createUserUseCase;
   final UpdateUserUseCase updateUserUseCase;

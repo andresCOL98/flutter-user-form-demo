@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../entities/user.dart';
 import '../repositories/user_repository.dart';
 
+@injectable
 class UpdateUserUseCase implements UseCase<User, UpdateUserParams> {
   final UserRepository repository;
 
@@ -45,6 +47,7 @@ class UpdateUserUseCase implements UseCase<User, UpdateUserParams> {
   }
 }
 
+@injectable
 class GetAllUsersUseCase implements NoParamsUseCase<List<User>> {
   final UserRepository repository;
 

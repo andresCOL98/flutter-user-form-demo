@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../../../core/constants/database_constants.dart';
@@ -14,6 +15,7 @@ abstract class UserLocalDataSource {
   Future<void> deleteUser(String userId);
 }
 
+@Injectable(as: UserLocalDataSource)
 class UserLocalDataSourceImpl implements UserLocalDataSource {
   final Database database;
 

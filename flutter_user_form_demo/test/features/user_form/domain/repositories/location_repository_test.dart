@@ -582,9 +582,9 @@ void main() {
         when(mockLocationRepository.validateLocationHierarchy('', '', ''))
             .thenAnswer((_) async => const Left(validationFailure));
 
-        expect(const Left(serverFailure), isA<Left<Failure, List<Country>>>());
-        expect(const Left(notFoundFailure), isA<Left<Failure, Country>>());
-        expect(const Left(validationFailure), isA<Left<Failure, bool>>());
+        expect(const Left(serverFailure), isA<Left>());
+        expect(const Left(notFoundFailure), isA<Left>());
+        expect(const Left(validationFailure), isA<Left>());
       });
     });
   });

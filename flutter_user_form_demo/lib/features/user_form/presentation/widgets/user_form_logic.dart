@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/user_form_bloc.dart';
+import '../bloc/user_form_bloc/user_form_bloc.dart';
 import '../../domain/entities/user.dart';
 
 class UserFormLogic {

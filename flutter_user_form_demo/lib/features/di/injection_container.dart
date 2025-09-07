@@ -28,9 +28,9 @@ import '../user_form/domain/usecases/get_user_usecase.dart';
 import '../user_form/domain/usecases/add_address_usecase.dart';
 
 // BLoCs
-import '../user_form/presentation/bloc/location_bloc.dart';
-import '../user_form/presentation/bloc/user_form_bloc.dart';
-import '../user_form/presentation/bloc/user_list_bloc.dart';
+import '../user_form/presentation/bloc/location_bloc/location_bloc.dart';
+import '../user_form/presentation/bloc/user_form_bloc/user_form_bloc.dart';
+import '../user_form/presentation/bloc/user_list_bloc/user_list_bloc.dart';
 
 final getIt = GetIt.instance;
 

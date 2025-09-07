@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../domain/entities/user.dart';
@@ -9,6 +10,7 @@ import '../datasources/local/address_local_data_source.dart';
 import '../models/user_model.dart';
 import '../models/address_model.dart';
 
+@Injectable(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserLocalDataSource userLocalDataSource;
   final AddressLocalDataSource addressLocalDataSource;

@@ -4,9 +4,9 @@ import 'package:get_it/get_it.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../user_form/data/datasources/local/database_initialization_data_source.dart';
-import 'bloc/location_bloc.dart';
-import 'bloc/user_form_bloc.dart';
-import 'bloc/user_list_bloc.dart';
+import 'bloc/location_bloc/location_bloc.dart';
+import 'bloc/user_form_bloc/user_form_bloc.dart';
+import 'bloc/user_list_bloc/user_list_bloc.dart';
 import 'pages/app_initialization_page.dart';
 import 'pages/user_list_page.dart';
 

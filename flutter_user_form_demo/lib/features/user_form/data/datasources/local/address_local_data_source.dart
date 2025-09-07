@@ -19,7 +19,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
 
   @override
   Future<AddressModel> createAddress(AddressModel address) async {
-    // If this is set as primary, make sure no other addresses are primary for this user
     if (address.isPrimary) {
       await _clearPrimaryAddresses(address.userId);
     }
@@ -68,7 +67,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
 
   @override
   Future<AddressModel> updateAddress(AddressModel address) async {
-    // If this is set as primary, make sure no other addresses are primary for this user
     if (address.isPrimary) {
       await _clearPrimaryAddresses(address.userId);
     }
@@ -84,7 +82,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
 
   @override
   Future<void> deleteAddress(String addressId) async {
-    // Soft delete: mark as inactive instead of actual deletion
     await database.update(
       DatabaseConstants.tableAddresses,
       {
@@ -99,7 +96,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
   @override
   Future<void> setPrimaryAddress(String userId, String addressId) async {
     await database.transaction((txn) async {
-      // Clear all primary addresses for this user
       await txn.update(
         DatabaseConstants.tableAddresses,
         {
@@ -111,7 +107,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
         whereArgs: [userId, 1],
       );
 
-      // Set the specified address as primary
       await txn.update(
         DatabaseConstants.tableAddresses,
         {
@@ -125,7 +120,6 @@ class AddressLocalDataSourceImpl implements AddressLocalDataSource {
     });
   }
 
-  /// Helper method to clear all primary addresses for a user
   Future<void> _clearPrimaryAddresses(String userId) async {
     await database.update(
       DatabaseConstants.tableAddresses,

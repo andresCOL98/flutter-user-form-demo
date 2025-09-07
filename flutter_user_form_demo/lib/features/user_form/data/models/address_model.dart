@@ -6,36 +6,21 @@ part 'address_model.g.dart';
 @JsonSerializable()
 class AddressModel extends Address {
   const AddressModel({
-    required String id,
-    required String userId,
-    required String streetAddress,
-    String? streetAddress2,
-    required String city,
-    required String postalCode,
-    required String countryId,
-    required String departmentId,
-    required String municipalityId,
-    String? notes,
-    bool isPrimary = false,
-    bool isActive = true,
-    required DateTime createdAt,
-    DateTime? updatedAt,
-  }) : super(
-          id: id,
-          userId: userId,
-          streetAddress: streetAddress,
-          streetAddress2: streetAddress2,
-          city: city,
-          postalCode: postalCode,
-          countryId: countryId,
-          departmentId: departmentId,
-          municipalityId: municipalityId,
-          notes: notes,
-          isPrimary: isPrimary,
-          isActive: isActive,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-        );
+    required super.id,
+    required super.userId,
+    required super.streetAddress,
+    super.streetAddress2,
+    required super.city,
+    required super.postalCode,
+    required super.countryId,
+    required super.departmentId,
+    required super.municipalityId,
+    super.notes,
+    super.isPrimary,
+    super.isActive,
+    required super.createdAt,
+    super.updatedAt,
+  });
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
       _$AddressModelFromJson(json);

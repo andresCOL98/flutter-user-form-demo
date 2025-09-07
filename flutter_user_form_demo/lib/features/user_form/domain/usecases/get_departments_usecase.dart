@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../entities/department.dart';
 import '../repositories/location_repository.dart';
 
+@injectable
 class GetDepartmentsUseCase
     implements UseCase<List<Department>, GetDepartmentsParams> {
   final LocationRepository repository;
@@ -39,6 +41,7 @@ class GetDepartmentsUseCase
   }
 }
 
+@injectable
 class SearchDepartmentsUseCase
     implements UseCase<List<Department>, SearchDepartmentsParams> {
   final LocationRepository repository;

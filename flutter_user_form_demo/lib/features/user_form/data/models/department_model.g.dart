@@ -11,10 +11,10 @@ DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       code: json['code'] as String,
-      countryId: json['country_id'] as String,
-      isActive: json['is_active'] as bool? ?? true,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
+      countryId: json['countryId'] as String,
+      isActive: json['isActive'] as bool? ?? true,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$DepartmentModelToJson(DepartmentModel instance) =>
@@ -22,8 +22,8 @@ Map<String, dynamic> _$DepartmentModelToJson(DepartmentModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'code': instance.code,
-      'country_id': instance.countryId,
-      'is_active': instance.isActive,
-      'created_at': instance.createdAt.toIso8601String(),
-      'updated_at': instance.updatedAt.toIso8601String(),
+      'countryId': instance.countryId,
+      'isActive': instance.isActive,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
     };

@@ -9,20 +9,14 @@ class DepartmentModel extends Department {
   final DateTime updatedAt;
 
   const DepartmentModel({
-    required String id,
-    required String name,
-    required String code,
-    required String countryId,
-    bool isActive = true,
+    required super.id,
+    required super.name,
+    required super.code,
+    required super.countryId,
+    super.isActive,
     required this.createdAt,
     required this.updatedAt,
-  }) : super(
-          id: id,
-          name: name,
-          code: code,
-          countryId: countryId,
-          isActive: isActive,
-        );
+  });
 
   factory DepartmentModel.fromJson(Map<String, dynamic> json) =>
       _$DepartmentModelFromJson(json);
@@ -76,6 +70,7 @@ class DepartmentModel extends Department {
     );
   }
 
+  @override
   DepartmentModel copyWith({
     String? id,
     String? name,

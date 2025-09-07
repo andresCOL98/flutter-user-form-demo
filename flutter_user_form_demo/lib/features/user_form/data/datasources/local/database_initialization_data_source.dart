@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:get_it/get_it.dart';
 
@@ -7,6 +8,7 @@ abstract class DatabaseInitializationDataSource {
   Future<DatabaseInitializationResult> initializeAndVerifyDatabase();
 }
 
+@Injectable(as: DatabaseInitializationDataSource)
 class DatabaseInitializationDataSourceImpl
     implements DatabaseInitializationDataSource {
   @override
